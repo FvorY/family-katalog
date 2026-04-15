@@ -1,0 +1,1113 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Family Produk | E-Katalog</title>
+  <meta name="description"
+    content="E-katalog Family Produk - Rasa Rumah di Setiap Sendok. Pesan sambal dan bawang goreng via WhatsApp." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Nunito:wght@700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f8f3e9;
+      --paper: #fffefb;
+      --ink: #2d261f;
+      --muted: #6b6158;
+      --line: #e6d9c6;
+      --brand: #c46c36;
+      --brand-strong: #a95322;
+      --brand-soft: #f8e3cf;
+      --accent: #d98a3d;
+      --ok: #2e7f55;
+      --soft-green: #e8f2e8;
+      --shadow: 0 14px 32px rgba(100, 76, 43, 0.10);
+      --radius-lg: 24px;
+      --radius-md: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(circle at 10% 8%, #fff0da 0%, transparent 34%),
+        radial-gradient(circle at 88% 2%, #f2ebd9 0%, transparent 30%),
+        linear-gradient(180deg, #fbf7ef 0%, #f6efe4 100%);
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .app {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 18px 14px 110px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 70;
+      margin: 0 -14px 16px;
+      padding: 10px 14px;
+      backdrop-filter: blur(8px);
+      background: rgba(251, 247, 239, 0.92);
+      border-bottom: 1px solid rgba(230, 217, 198, 0.9);
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-name {
+      margin: 0;
+      font-family: "Nunito", sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+    }
+
+    .brand-tagline {
+      margin: 3px 0 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 1px solid #d8e6d7;
+      background: #f3fbf2;
+      color: #2f734d;
+      white-space: nowrap;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      padding: 24px 18px 20px;
+      background: linear-gradient(135deg, #fffaf1 0%, #fbe9d9 55%, #f5dec6 100%);
+      box-shadow: var(--shadow);
+      border: 1px solid #ecdcca;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(196, 108, 54, 0.10);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: -24px;
+      bottom: -38px;
+      width: 160px;
+      height: 90px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.36);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: "Nunito", sans-serif;
+      font-size: clamp(1.95rem, 5vw, 2.9rem);
+      line-height: 1.18;
+      max-width: 700px;
+    }
+
+    .hero p {
+      margin: 12px 0 0;
+      max-width: 700px;
+      color: #5f5347;
+      line-height: 1.65;
+      font-size: 1rem;
+    }
+
+    .hero-grid {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mini-card {
+      padding: 13px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(222, 202, 176, 0.9);
+    }
+
+    .mini-card b {
+      font-size: 0.95rem;
+    }
+
+    .mini-card span {
+      display: block;
+      margin-top: 5px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+
+    .trust-bar {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .trust-item {
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid #e9dbc8;
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: #6b584a;
+    }
+
+    .section-title {
+      margin: 28px 2px 10px;
+      font-family: "Nunito", sans-serif;
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .section-note {
+      margin: 0 2px 12px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+
+    .cards {
+      display: grid;
+      gap: 12px;
+    }
+
+    .cards.featured {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .cards.catalog {
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .product {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(110, 67, 47, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-media {
+      position: relative;
+      aspect-ratio: 16/11;
+      overflow: hidden;
+    }
+
+    .product-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-media::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 46%;
+      background: linear-gradient(180deg, transparent, rgba(61, 43, 28, 0.1));
+    }
+
+    .badge-wrap {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .badge.best {
+      color: #7a3f13;
+      background: #ffe6d4;
+    }
+
+    .badge.best2 {
+      color: #8e361d;
+      background: #ffd9cf;
+    }
+
+    .badge.spicy {
+      color: #7f1f12;
+      background: #ffd2cd;
+    }
+
+    .badge.po {
+      color: #fff;
+      background: var(--ok);
+    }
+
+    .product-content {
+      padding: 14px;
+    }
+
+    .category {
+      margin: 0;
+      color: #927662;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .name {
+      margin: 6px 0 6px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .note {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    .variant-wrap {
+      display: grid;
+      gap: 8px;
+    }
+
+    .variant {
+      border: 1px solid #e8d9ca;
+      border-radius: 14px;
+      padding: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #fffcf8;
+    }
+
+    .variant b {
+      font-size: 1rem;
+    }
+
+    .variant small {
+      display: block;
+      margin-top: 3px;
+      color: var(--brand-strong);
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    button {
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .btn-add {
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      background: linear-gradient(180deg, var(--brand), var(--brand-strong));
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.9rem;
+      box-shadow: 0 8px 18px rgba(169, 83, 34, 0.16);
+    }
+
+    .page {
+      display: none;
+      animation: fadeSlide 0.2s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(7px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cart-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .cart-item {
+      background: #fff;
+      border: 1px solid #e6d8c8;
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .cart-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .cart-title {
+      margin: 0;
+      font-size: 1.02rem;
+    }
+
+    .cart-sub {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .qty {
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #e1cfbf;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .qty button {
+      border: none;
+      width: 38px;
+      height: 36px;
+      background: #fff9f2;
+      font-size: 1.05rem;
+      line-height: 1;
+      color: #7d4f34;
+    }
+
+    .qty span {
+      min-width: 40px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.98rem;
+    }
+
+    .totals {
+      margin-top: 16px;
+      border: 1px solid #e4d7c7;
+      border-radius: 16px;
+      background: #fff;
+      padding: 14px;
+      box-shadow: 0 8px 22px rgba(96, 68, 40, 0.05);
+    }
+
+    .line {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      font-size: 0.98rem;
+    }
+
+    .line strong {
+      font-size: 1.06rem;
+    }
+
+    .empty {
+      margin: 12px 0 0;
+      color: var(--muted);
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      font-size: 0.98rem;
+      font-weight: 800;
+    }
+
+    .field input {
+      width: 100%;
+      border: 1px solid #decebd;
+      border-radius: 14px;
+      padding: 14px;
+      font: inherit;
+      background: #fff;
+      font-size: 1rem;
+    }
+
+    .hint {
+      margin: 10px 0 0;
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .ship-info {
+      margin-top: 14px;
+      padding: 13px;
+      border-radius: 14px;
+      background: #f7f4ea;
+      border: 1px solid #e3d7be;
+      font-size: 0.95rem;
+      color: #6d4832;
+      line-height: 1.55;
+    }
+
+    .btn-main {
+      margin-top: 16px;
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      padding: 15px 16px;
+      background: linear-gradient(180deg, #2d9b5c, #257f4c);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1rem;
+      box-shadow: 0 10px 24px rgba(37, 127, 76, 0.18);
+    }
+
+    .sticky-cart {
+      position: fixed;
+      z-index: 80;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      width: min(92vw, 460px);
+      border: none;
+      border-radius: 18px;
+      background: linear-gradient(110deg, #c46c36, #db8745);
+      color: #fff;
+      padding: 14px 16px;
+      box-shadow: 0 16px 36px rgba(107, 48, 21, 0.24);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      font-size: 0.98rem;
+    }
+
+    .nav {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .nav-btn {
+      border: 1px solid #e4d7c7;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 14px;
+      padding: 12px 8px;
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: #755843;
+    }
+
+    .nav-btn.active {
+      border-color: #e2c29e;
+      background: #fff1df;
+      color: #8c461f;
+      box-shadow: inset 0 0 0 1px rgba(196, 108, 54, 0.08);
+    }
+
+    @media (min-width: 760px) {
+      .app {
+        padding: 24px 20px 120px;
+      }
+
+      .topbar {
+        margin: 0 -20px 20px;
+        padding: 11px 20px;
+      }
+
+      .hero {
+        padding: 30px 30px 24px;
+      }
+
+      .cards.catalog {
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="brand-wrap">
+        <div>
+          <h2 class="brand-name">Family Produk</h2>
+          <p class="brand-tagline">Rasa Rumah di Setiap Sendok</p>
+        </div>
+        <span class="pill">PO • Estimasi H+1/H+2</span>
+      </div>
+    </div>
+
+    <section id="page-home" class="page active">
+      <div class="hero">
+        <h1>Katalog rumahan yang gampang dilihat, gampang dipesan, dan cocok untuk lauk keluarga.</h1>
+        <p>
+          Family Produk menyediakan sambal, bawang goreng, snack, dan menu rumahan
+          dengan cara pesan yang sederhana. Semua produk berstatus <b>PO</b>,
+          konfirmasi ready via WhatsApp, estimasi produksi <b>H+1/H+2</b>, dan
+          close order setiap hari pukul <b>20.00</b>.
+        </p>
+        <div class="hero-grid">
+          <div class="mini-card">
+            <b>Pesan Mudah</b>
+            <span>Pilih produk, masukkan keranjang, lalu kirim ke WhatsApp</span>
+          </div>
+          <div class="mini-card">
+            <b>Harga Jelas</b>
+            <span>Total belanja dan ongkir langsung dihitung otomatis</span>
+          </div>
+        </div>
+        <div class="trust-bar">
+          <span class="trust-item">Cocok untuk lauk harian keluarga</span>
+          <span class="trust-item">Gratis ongkir Bohar & Sidoarjo</span>
+          <span class="trust-item">Checkout langsung ke WhatsApp</span>
+        </div>
+      </div>
+
+      <h3 class="section-title">Produk Terlaris</h3>
+      <p class="section-note">Pilihan yang paling sering dicari untuk stok di rumah.</p>
+      <div class="cards featured" id="featured-list"></div>
+
+      <h3 class="section-title">Katalog Produk</h3>
+      <p class="section-note">Tampilan dibuat lebih sederhana supaya mudah dibaca dan langsung pilih produk yang
+        dibutuhkan.</p>
+      <div class="cards catalog" id="catalog-list"></div>
+    </section>
+
+    <section id="page-cart" class="page">
+      <h3 class="section-title">Keranjang</h3>
+      <p class="section-note">Cek lagi pesanan, tambah atau kurangi jumlah sebelum lanjut checkout.</p>
+      <div id="cart-list" class="cart-list"></div>
+      <p id="cart-empty" class="empty">Keranjang masih kosong.</p>
+    </section>
+
+    <section id="page-checkout" class="page">
+      <h3 class="section-title">Checkout</h3>
+      <p class="section-note">Isi alamat lengkap. Ongkir akan dihitung otomatis sebelum pesan dikirim ke WhatsApp.</p>
+
+      <div class="field">
+        <label for="alamat">Alamat Pengiriman</label>
+        <input id="alamat" type="text" placeholder="Contoh: Bohar, Taman, Sidoarjo" autocomplete="street-address" />
+      </div>
+      <p class="hint">
+        Gratis ongkir untuk alamat yang mengandung kata <b>Bohar</b> atau
+        <b>Sidoarjo</b>.
+      </p>
+
+      <div class="ship-info" id="ship-info">Ongkir: Rp 15.000</div>
+
+      <div class="totals">
+        <div class="line">
+          <span>Total Sementara</span>
+          <strong id="checkout-subtotal">Rp 0</strong>
+        </div>
+        <div class="line">
+          <span>Ongkir</span>
+          <strong id="checkout-shipping">Rp 15.000</strong>
+        </div>
+        <div class="line">
+          <span>Total Akhir</span>
+          <strong id="checkout-grand-total">Rp 15.000</strong>
+        </div>
+      </div>
+
+      <button id="btn-wa" class="btn-main">Lanjut Checkout WhatsApp</button>
+    </section>
+
+    <div class="nav">
+      <button class="nav-btn active" data-page="home">Beranda</button>
+      <button class="nav-btn" data-page="cart">Keranjang</button>
+      <button class="nav-btn" data-page="checkout">Checkout</button>
+    </div>
+  </div>
+
+  <button id="sticky-cart" class="sticky-cart">
+    <span id="sticky-left">Keranjang (0)</span>
+    <span id="sticky-right">Rp 0</span>
+  </button>
+
+  <script>
+    const PHONE = "6281232567903";
+    const FREE_SHIP_KEYWORDS = ["bohar", "sidoarjo"];
+    const SHIPPING_FEE = 15000;
+
+    const makePlaceholder = (text, c1, c2) => {
+      const svg = `
+          <svg xmlns='http://www.w3.org/2000/svg' width='900' height='620'>
+            <defs>
+              <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
+                <stop offset='0%' stop-color='${c1}'/>
+                <stop offset='100%' stop-color='${c2}'/>
+              </linearGradient>
+            </defs>
+            <rect width='100%' height='100%' fill='url(#g)'/>
+            <g fill='rgba(255,255,255,0.28)'>
+              <circle cx='760' cy='110' r='90'/>
+              <circle cx='130' cy='560' r='135'/>
+            </g>
+            <text x='50%' y='50%' text-anchor='middle' dominant-baseline='middle'
+              font-family='Manrope, sans-serif' font-size='50' fill='white' font-weight='700'>
+              ${text}
+            </text>
+          </svg>
+        `;
+      return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+    };
+
+    const catalog = [
+      {
+        id: "bawang-goreng-200gr",
+        category: "Bawang Goreng",
+        name: "Bawang goreng 200gr",
+        badge: "Best Seller",
+        badgeClass: "best",
+        image: "bawanggoreng200/image.png",
+        note: "Bawang merah goreng renyah, gurih dan lezat.",
+        variants: [{ size: "200gr", price: 45000 }]
+      },
+      {
+        id: "bawang-goreng-ekonomis-50gr",
+        category: "Bawang Goreng",
+        name: "Bawang goreng ekonomis 50gr",
+        badge: "Best Seller",
+        badgeClass: "best",
+        image: "bawanggoreng50/image.png",
+        note: "Bawang merah goreng renyah, gurih dan lezat.",
+        variants: [{ size: "50gr", price: 12000 }]
+      },
+      {
+        id: "sambal-bawang",
+        category: "Sambal",
+        name: "Sambal bawang",
+        badge: "Best Seller #2",
+        badgeClass: "best2",
+        image: "sambalbawang/image.png",
+        note: "Sambal bawang merah tanpa pengawet dan MSG, rasa extra hot, manis dan gurih.",
+        variants: [{ size: "100ml", price: 17000 }]
+      },
+      {
+        id: "sambal-hijau-rica",
+        category: "Sambal",
+        name: "Sambal hijau rica",
+        badge: "",
+        badgeClass: "",
+        image: "sambalhijaurica/image.png",
+        note: "Sambal lombok kecil hijau dengan rasa medium hot.",
+        variants: [{ size: "100ml", price: 20000 }]
+      },
+      {
+        id: "sambal-cumi",
+        category: "Sambal",
+        name: "Sambal cumi",
+        badge: "Pedas Favorit",
+        badgeClass: "spicy",
+        image: "sambalcumi/image.png",
+        note: "Sambal isi cumi dengan rasa extra hot, asam, manis dan gurih.",
+        variants: [{ size: "100ml", price: 27000 }]
+      },
+      {
+        id: "shrimp-salad-roll",
+        category: "Salad Roll",
+        name: "Shrimp salad roll",
+        badge: "",
+        badgeClass: "",
+        image: "shrimpsaladroll/image.png",
+        note: "2 roll salad udang dengan sayuran segar + 2 saus.",
+        variants: [{ size: "1 porsi", price: 23000 }]
+      },
+      {
+        id: "egg-mayo-rusian-salad",
+        category: "Salad Roll",
+        name: "Egg mayo Rusian salad",
+        badge: "",
+        badgeClass: "",
+        image: "eggmayorusiansalad/image.png",
+        note: "2 roll salad telur dengan sayuran lettuce/selada, buncis, kentang, wortel + 2 saus.",
+        variants: [{ size: "1 porsi", price: 20000 }]
+      },
+      {
+        id: "chicken-salad-hawaiian-roll",
+        category: "Salad Roll",
+        name: "Chicken salad Hawaiian roll",
+        badge: "",
+        badgeClass: "",
+        image: "chickensaladhawaianroll/image.png",
+        note: "2 salad ayam dengan nanas, lettuce/selada, kol ungu, wortel, apel + 2 saus.",
+        variants: [{ size: "1 porsi", price: 20000 }]
+      },
+      {
+        id: "chicken-mayo-salad-roll",
+        category: "Salad Roll",
+        name: "Chicken mayo salad roll",
+        badge: "",
+        badgeClass: "",
+        image: "chickenmayosaladroll/image.png",
+        note: "2 roll salad daging ayam dengan sayuran lettuce/selada, kol ungu, wortel, timun + 2 saus.",
+        variants: [{ size: "1 porsi", price: 20000 }]
+      },
+      {
+        id: "egg-mayo-salad-roll",
+        category: "Salad Roll",
+        name: "Egg mayo salad roll",
+        badge: "",
+        badgeClass: "",
+        image: "eggmayosaladroll/image.png",
+        note: "2 roll salad telur dengan sayuran lettuce/selada, kol ungu, wortel, timun + 2 saus.",
+        variants: [{ size: "1 porsi", price: 20000 }]
+      },
+      {
+        id: "rice-bowl-ayam-crispy",
+        category: "Rice Bowl",
+        name: "Rice bowl ayam crispy sambal bawang/sambal rica hijau",
+        badge: "",
+        badgeClass: "",
+        image: "ricebowlayamcrispysambalbawang/image.png",
+        note: "Nasi + ayam crispy dan onion omelette disajikan dengan selada, timun, dan sambal pilihan.",
+        variants: [{ size: "1 porsi", price: 17000 }]
+      },
+      {
+        id: "ayam-saus-inggris",
+        category: "Olahan Ayam",
+        name: "Ayam saus Inggris",
+        badge: "",
+        badgeClass: "",
+        image: "ayamsausinggris/image.png",
+        note: "Daging ayam dimasak dengan saus Inggris, bawang bombay dan bawang daun.",
+        variants: [{ size: "1 pack", price: 35000 }]
+      },
+      {
+        id: "ayam-asam-manis",
+        category: "Olahan Ayam",
+        name: "Ayam asam manis",
+        badge: "",
+        badgeClass: "",
+        image: "ayamasammanis/image.png",
+        note: "Daging ayam dimasak dengan nanas, wortel dan lombok merah rasa asam manis.",
+        variants: [{ size: "1 pack", price: 37000 }]
+      },
+      {
+        id: "olahan-ayam-rica2",
+        category: "Olahan Ayam",
+        name: "Ayam rica",
+        badge: "",
+        badgeClass: "",
+        image: "ayammasakrica/image.png",
+        note: "Daging ayam dimasak dengan sambal rica2 hijau, bawang bombay dan lombok hijau.",
+        variants: [{ size: "1 pack", price: 35000 }]
+      },
+      {
+        id: "ayam-lada-hitam",
+        category: "Olahan Ayam",
+        name: "Ayam masak lada hitam",
+        badge: "",
+        badgeClass: "",
+        image: "ayammasakladahitam/image.png",
+        note: "Daging ayam dimasak dengan lada hitam, wortel, lombok merah dan bawang bombay.",
+        variants: [{ size: "1 pack", price: 37000 }]
+      },
+      {
+        id: "kacang-bawang-500gr",
+        category: "Snack",
+        name: "Kacang bawang 500gr",
+        badge: "",
+        badgeClass: "",
+        image: "bawangoreng500/image.png",
+        note: "Kacang impor digoreng renyah, gurih dan enak.",
+        variants: [{ size: "500gr", price: 35000 }]
+      }
+    ];
+
+    const featuredIds = ["bawang-goreng-200gr", "bawang-goreng-ekonomis-50gr"];
+    const featuredList = document.getElementById("featured-list");
+    const catalogList = document.getElementById("catalog-list");
+    const cartListEl = document.getElementById("cart-list");
+    const cartEmptyEl = document.getElementById("cart-empty");
+    const stickyCart = document.getElementById("sticky-cart");
+    const stickyLeft = document.getElementById("sticky-left");
+    const stickyRight = document.getElementById("sticky-right");
+    const alamatInput = document.getElementById("alamat");
+    const shipInfo = document.getElementById("ship-info");
+    const checkoutSubtotal = document.getElementById("checkout-subtotal");
+    const checkoutShipping = document.getElementById("checkout-shipping");
+    const checkoutGrandTotal = document.getElementById("checkout-grand-total");
+    const btnWa = document.getElementById("btn-wa");
+
+    let cart = JSON.parse(localStorage.getItem("family_produk_cart") || "[]");
+
+    const formatRp = (n) =>
+      new Intl.NumberFormat("id-ID", {
+        style: "currency",
+        currency: "IDR",
+        maximumFractionDigits: 0
+      }).format(n);
+
+    const getShipping = () => {
+      const address = (alamatInput.value || "").toLowerCase();
+      const free = FREE_SHIP_KEYWORDS.some((k) => address.includes(k));
+      return free ? 0 : SHIPPING_FEE;
+    };
+
+    const getSubtotal = () =>
+      cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+    const renderProductCard = (product) => {
+      const variantHtml = product.variants
+        .map(
+          (v) => `
+              <div class="variant">
+                <div>
+                  <b>${v.size}</b>
+                  <small>${formatRp(v.price)}</small>
+                </div>
+                <button
+                  class="btn-add"
+                  data-id="${product.id}"
+                  data-size="${v.size}"
+                  data-price="${v.price}"
+                >
+                  + Keranjang
+                </button>
+              </div>
+            `
+        )
+        .join("");
+
+      return `
+          <article class="product">
+            <div class="product-media">
+              <img src="${product.image}" alt="${product.name}" loading="lazy" />
+              <div class="badge-wrap">
+                ${product.badge
+          ? `<span class="badge ${product.badgeClass}">${product.badge}</span>`
+          : ""
+        }
+                <span class="badge po">PO</span>
+              </div>
+            </div>
+            <div class="product-content">
+              <p class="category">${product.category}</p>
+              <h4 class="name">${product.name}</h4>
+              <p class="note">${product.note}</p>
+              <div class="variant-wrap">${variantHtml}</div>
+            </div>
+          </article>
+        `;
+    };
+
+    const renderCatalog = () => {
+      const featured = catalog.filter((p) => featuredIds.includes(p.id));
+      const rest = catalog.filter((p) => !featuredIds.includes(p.id));
+      featuredList.innerHTML = featured.map(renderProductCard).join("");
+      catalogList.innerHTML = rest.map(renderProductCard).join("");
+    };
+
+    const saveCart = () => {
+      localStorage.setItem("family_produk_cart", JSON.stringify(cart));
+    };
+
+    const addToCart = ({ id, size, price }) => {
+      const product = catalog.find((p) => p.id === id);
+      if (!product) return;
+
+      const key = `${id}-${size}`;
+      const existing = cart.find((item) => item.key === key);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({
+          key,
+          id,
+          name: product.name,
+          size,
+          price: Number(price),
+          qty: 1
+        });
+      }
+      saveCart();
+      renderCart();
+    };
+
+    const changeQty = (key, delta) => {
+      const item = cart.find((c) => c.key === key);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) cart = cart.filter((c) => c.key !== key);
+      saveCart();
+      renderCart();
+    };
+
+    const renderCart = () => {
+      if (!cart.length) {
+        cartListEl.innerHTML = "";
+        cartEmptyEl.style.display = "block";
+      } else {
+        cartEmptyEl.style.display = "none";
+        cartListEl.innerHTML = cart
+          .map(
+            (item) => `
+                <article class="cart-item">
+                  <div class="cart-head">
+                    <div>
+                      <h4 class="cart-title">${item.name}</h4>
+                      <p class="cart-sub">${item.size} • ${formatRp(item.price)}</p>
+                    </div>
+                    <strong>${formatRp(item.price * item.qty)}</strong>
+                  </div>
+                  <div class="qty">
+                    <button data-action="dec" data-key="${item.key}" aria-label="kurangi">-</button>
+                    <span>${item.qty}</span>
+                    <button data-action="inc" data-key="${item.key}" aria-label="tambah">+</button>
+                  </div>
+                </article>
+              `
+          )
+          .join("");
+      }
+
+      const subtotal = getSubtotal();
+      const shipping = getShipping();
+      const grandTotal = subtotal + shipping;
+
+      stickyLeft.textContent = `Keranjang (${cart.reduce(
+        (a, b) => a + b.qty,
+        0
+      )})`;
+      stickyRight.textContent = formatRp(subtotal);
+      checkoutSubtotal.textContent = formatRp(subtotal);
+      checkoutShipping.textContent = formatRp(shipping);
+      checkoutGrandTotal.textContent = formatRp(grandTotal);
+      shipInfo.textContent =
+        shipping === 0
+          ? "Gratis ongkir karena alamat mengandung Bohar/Sidoarjo."
+          : "Ongkir berlaku Rp 15.000 (di luar Bohar/Sidoarjo).";
+    };
+
+    const goToPage = (page) => {
+      document
+        .querySelectorAll(".page")
+        .forEach((el) => el.classList.toggle("active", el.id === `page-${page}`));
+      document
+        .querySelectorAll(".nav-btn")
+        .forEach((el) => el.classList.toggle("active", el.dataset.page === page));
+    };
+
+    const openWhatsApp = () => {
+      if (!cart.length) {
+        alert("Keranjang masih kosong.");
+        return;
+      }
+      const address = alamatInput.value.trim();
+      if (!address) {
+        alert("Mohon isi alamat pengiriman.");
+        goToPage("checkout");
+        return;
+      }
+
+      const subtotal = getSubtotal();
+      const shipping = getShipping();
+      const lines = cart
+        .map((item) => `- ${item.name} (${item.size}) x${item.qty}`)
+        .join("\n");
+
+      const message = `Halo kak 👋
+
+Saya mau order Family Produk:
+
+${lines}
+
+Total sementara: ${formatRp(subtotal)}
+Ongkir: ${formatRp(shipping)}
+
+Alamat: ${address}
+
+Boleh info kak, ready kapan ya? 🙏  
+Kalau sudah ready, saya lanjut pembayaran
+
+Terima kasih 😊`;
+
+      const waUrl = `https://wa.me/${PHONE}?text=${encodeURIComponent(message)}`;
+      window.open(waUrl, "_blank");
+    };
+
+    document.addEventListener("click", (e) => {
+      const addBtn = e.target.closest(".btn-add");
+      if (addBtn) {
+        addToCart({
+          id: addBtn.dataset.id,
+          size: addBtn.dataset.size,
+          price: Number(addBtn.dataset.price)
+        });
+        return;
+      }
+
+      const qtyBtn = e.target.closest("[data-action]");
+      if (qtyBtn) {
+        changeQty(
+          qtyBtn.dataset.key,
+          qtyBtn.dataset.action === "inc" ? 1 : -1
+        );
+        return;
+      }
+
+      const navBtn = e.target.closest(".nav-btn");
+      if (navBtn) {
+        goToPage(navBtn.dataset.page);
+      }
+    });
+
+    stickyCart.addEventListener("click", () => goToPage("cart"));
+    alamatInput.addEventListener("input", renderCart);
+    btnWa.addEventListener("click", openWhatsApp);
+
+    renderCatalog();
+    renderCart();
+  </script>
+</body>
+
+</html>

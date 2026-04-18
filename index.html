@@ -605,7 +605,7 @@
         </div>
         <div class="trust-bar">
           <span class="trust-item">Cocok untuk lauk harian keluarga</span>
-          <span class="trust-item">Gratis ongkir Bohar & Sidoarjo</span>
+          <span class="trust-item">Gratis ongkir Bohar < 5 km</span>
           <span class="trust-item">Checkout langsung ke WhatsApp</span>
         </div>
       </div>
@@ -635,11 +635,11 @@
         <input id="alamat" type="text" placeholder="Contoh: Bohar, Taman, Sidoarjo" autocomplete="street-address" />
       </div>
       <p class="hint">
-        Gratis ongkir untuk alamat yang mengandung kata <b>Bohar</b> atau
-        <b>Sidoarjo</b>.
+        Gratis ongkir untuk alamat di <b>Bohar</b> dengan jarak kurang dari <b>5 km</b> dari toko.
+        Alamat lain dihitung otomatis berdasarkan jarak.
       </p>
 
-      <div class="ship-info" id="ship-info">Ongkir: Rp 15.000</div>
+      <div class="ship-info" id="ship-info">Masukkan alamat untuk menghitung ongkir.</div>
 
       <div class="totals">
         <div class="line">
@@ -673,8 +673,32 @@
 
   <script>
     const PHONE = "6281232567903";
-    const FREE_SHIP_KEYWORDS = ["bohar", "sidoarjo"];
     const SHIPPING_FEE = 15000;
+    const STORE_LAT = -7.375;
+    const STORE_LNG = 112.683;
+    const FREE_DISTANCE_KM = 5;
+
+    function haversine(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat / 2) ** 2 +
+        Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+        Math.sin(dLon / 2) ** 2;
+      return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+
+    function distanceToFee(km) {
+      if (km <= 5) return 5000;
+      if (km <= 10) return 8000;
+      if (km <= 20) return 12000;
+      if (km <= 35) return 18000;
+      return 25000;
+    }
+
+    let currentShipping = SHIPPING_FEE;
+    let shippingDebounce = null;
+    let shippingLoading = false;
 
     const makePlaceholder = (text, c1, c2) => {
       const svg = `
@@ -886,11 +910,69 @@
         maximumFractionDigits: 0
       }).format(n);
 
-    const getShipping = () => {
-      const address = (alamatInput.value || "").toLowerCase();
-      const free = FREE_SHIP_KEYWORDS.some((k) => address.includes(k));
-      return free ? 0 : SHIPPING_FEE;
-    };
+    const getShipping = () => currentShipping;
+
+    async function calcShipping() {
+      const address = (alamatInput.value || "").trim();
+      const lowerAddr = address.toLowerCase();
+      const isBohar = lowerAddr.includes("bohar");
+
+      if (!address) {
+        currentShipping = SHIPPING_FEE;
+        shipInfo.textContent = "Masukkan alamat untuk menghitung ongkir.";
+        renderShippingTotals();
+        return;
+      }
+
+      shippingLoading = true;
+      shipInfo.textContent = "Menghitung ongkir...";
+
+      try {
+        const q = encodeURIComponent(address + ", Sidoarjo, Jawa Timur, Indonesia");
+        const resp = await fetch(
+          "https://nominatim.openstreetmap.org/search?q=" + q + "&format=json&limit=1",
+          { headers: { "Accept-Language": "id" } }
+        );
+        const results = await resp.json();
+
+        if (results.length > 0) {
+          const distKm = haversine(
+            STORE_LAT, STORE_LNG,
+            parseFloat(results[0].lat),
+            parseFloat(results[0].lon)
+          );
+
+          if (isBohar && distKm < FREE_DISTANCE_KM) {
+            currentShipping = 0;
+            shipInfo.textContent = `Gratis ongkir! Jarak ±${distKm.toFixed(1)} km dari toko (area Bohar).`;
+          } else {
+            currentShipping = distanceToFee(distKm);
+            shipInfo.textContent = `Ongkir ${formatRp(currentShipping)} — jarak ±${distKm.toFixed(1)} km dari toko.`;
+          }
+        } else {
+          currentShipping = isBohar ? 0 : SHIPPING_FEE;
+          shipInfo.textContent = currentShipping === 0
+            ? "Gratis ongkir (area Bohar, jarak tidak dapat diverifikasi)."
+            : `Ongkir ${formatRp(currentShipping)} (estimasi, alamat tidak ditemukan).`;
+        }
+      } catch {
+        currentShipping = isBohar ? 0 : SHIPPING_FEE;
+        shipInfo.textContent = currentShipping === 0
+          ? "Gratis ongkir (area Bohar)."
+          : `Ongkir ${formatRp(currentShipping)} (estimasi, gagal menghitung jarak).`;
+      }
+
+      shippingLoading = false;
+      renderShippingTotals();
+    }
+
+    function renderShippingTotals() {
+      const subtotal = getSubtotal();
+      const shipping = getShipping();
+      checkoutSubtotal.textContent = formatRp(subtotal);
+      checkoutShipping.textContent = formatRp(shipping);
+      checkoutGrandTotal.textContent = formatRp(subtotal + shipping);
+    }
 
     const getSubtotal = () =>
       cart.reduce((sum, item) => sum + item.price * item.qty, 0);
@@ -1010,21 +1092,13 @@
       }
 
       const subtotal = getSubtotal();
-      const shipping = getShipping();
-      const grandTotal = subtotal + shipping;
 
       stickyLeft.textContent = `Keranjang (${cart.reduce(
         (a, b) => a + b.qty,
         0
       )})`;
       stickyRight.textContent = formatRp(subtotal);
-      checkoutSubtotal.textContent = formatRp(subtotal);
-      checkoutShipping.textContent = formatRp(shipping);
-      checkoutGrandTotal.textContent = formatRp(grandTotal);
-      shipInfo.textContent =
-        shipping === 0
-          ? "Gratis ongkir karena alamat mengandung Bohar/Sidoarjo."
-          : "Ongkir berlaku Rp 15.000 (di luar Bohar/Sidoarjo).";
+      renderShippingTotals();
     };
 
     const goToPage = (page) => {
@@ -1045,6 +1119,10 @@
       if (!address) {
         alert("Mohon isi alamat pengiriman.");
         goToPage("checkout");
+        return;
+      }
+      if (shippingLoading) {
+        alert("Tunggu sebentar, ongkir sedang dihitung...");
         return;
       }
 
@@ -1101,7 +1179,10 @@ Terima kasih 😊`;
     });
 
     stickyCart.addEventListener("click", () => goToPage("cart"));
-    alamatInput.addEventListener("input", renderCart);
+    alamatInput.addEventListener("input", () => {
+      clearTimeout(shippingDebounce);
+      shippingDebounce = setTimeout(calcShipping, 800);
+    });
     btnWa.addEventListener("click", openWhatsApp);
 
     renderCatalog();
